@@ -6,13 +6,13 @@
 //
 
 //Bubble Sort
-func bubbleSort<Element: Comparable>(_ array: input [Element]) {
+func bubbleSort<Element: Comparable>(_ array: inout [Element]) {
     // There is no need to sort the collection if it has less than two elements.
     guard array.count >= 2 else {
         return
     }
     //A single-pass bubbles the lagest value to the end of the collection. Every pass need to compare one less value than in the previous pass, so you essentially shorten the array by one with each pass.
-    for end in (1..array.count).reversed() {
+    for end in (1..<array.count).reversed() {
         var swapped = false
         // This loop performs a single pass; it compares adjacent values and swaps them if needed.
         for current in 0..<end {

@@ -18,6 +18,6 @@ final class SortingTestCase: XCTestCase {
     
     func test_bubbleSort() {
         bubbleSort(&testArray)
-        XCAssertEqual(testArray, sortedArray)
+        XCTAssertEqual(testArray, sortedArray)
     }
 }
