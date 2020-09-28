@@ -8,11 +8,13 @@
 import XCTest
 @testable import DataStructures
 
+
 protocol BoardGameManager {
     associatedtype Player
     mutating func nextPlayer() -> Player?
 }
 
+// BoardGame includes an endless queue(round table)
 extension QueueStack: BoardGameManager {
     typealias Player = T
     
@@ -34,14 +36,14 @@ final class QueueChallengeTestCases: XCTestCase {
         queue.enqueue("Samus")
         queue.enqueue("Pikachu")
         queue.enqueue("Toon Ozma")
-        print(queue.description)
         XCTAssertEqual(queue.peek, "Kirby")
         queue.nextPlayer()
-        print(queue.description)
         queue.nextPlayer()
-        print(queue.description)
         XCTAssertEqual(queue.peek, "Pikachu")
         queue.nextPlayer()
-        queue.enqueue("Toon Ozma")
+        XCTAssertEqual(queue.peek, "Toon Ozma")
+        queue.nextPlayer()
+        XCTAssertEqual(queue.peek, "Kirby")
+        
     }
 }

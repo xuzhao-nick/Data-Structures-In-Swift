@@ -16,12 +16,7 @@ protocol Queue {
 
 extension QueueStack: CustomStringConvertible {
     var description: String {
-        var array:[T] = []
-        if dequeueStack.isEmpty {
-            array =  enqueueStack.reversed()
-        } else {
-            array = dequeueStack
-        }
+        var array:[T] = enqueueStack.reversed() + dequeueStack
         return array
         .map {"\($0)"}
         .joined(separator: " ")
