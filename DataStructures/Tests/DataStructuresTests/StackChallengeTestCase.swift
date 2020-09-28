@@ -5,7 +5,6 @@
 //  Created by Nick Xu on 26/9/20.
 //
 import XCTest
-import Foundation
 @testable import DataStructures
 
 func checkParentheses(_ string: String) -> Bool {
