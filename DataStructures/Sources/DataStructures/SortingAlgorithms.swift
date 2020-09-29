@@ -55,7 +55,6 @@ func insertionSort<Element: Comparable>(_ array: inout [Element]) {
     guard array.count >= 2 else {
         return
     }
-    
     for current in 1..<array.count {
         for shifting in (1...current).reversed() {
             if array[shifting] < array[shifting - 1] {
@@ -65,4 +64,10 @@ func insertionSort<Element: Comparable>(_ array: inout [Element]) {
             }
         }
     }
+}
+
+func printElement<T>(_ array: [T]) {
+    let string = array.map {"\($0)"}
+                 .joined(separator: " ")
+    print(string)
 }
