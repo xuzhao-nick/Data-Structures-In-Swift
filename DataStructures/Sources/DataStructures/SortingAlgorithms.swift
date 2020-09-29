@@ -28,6 +28,41 @@ func bubbleSort<Element: Comparable>(_ array: inout [Element]) {
     }
 }
 
-//TODO: Selection Sort
+//Selection Sort
+func selectionSort<Element: Comparable>(_ array: inout [Element]) {
+    // There is no need to sort the collection if it has less than two elements.
+    guard array.count >= 2 else {
+        return
+    }
 
-//TODO: Insertion Sort
+    for current in 0..<(array.count - 1) {
+        var lowest = current
+        
+        for other in (current + 1)..<array.count {
+            if array[lowest] > array[other] {
+                lowest = other
+            }
+        }
+        if lowest != current {
+            array.swapAt(lowest, current)
+        }
+    }
+}
+
+//Insertion Sort
+func insertionSort<Element: Comparable>(_ array: inout [Element]) {
+    // There is no need to sort the collection if it has less than two elements.
+    guard array.count >= 2 else {
+        return
+    }
+    
+    for current in 1..<array.count {
+        for shifting in (1...current).reversed() {
+            if array[shifting] < array[shifting - 1] {
+                array.swapAt(shifting, shifting - 1)
+            } else {
+                break
+            }
+        }
+    }
+}
