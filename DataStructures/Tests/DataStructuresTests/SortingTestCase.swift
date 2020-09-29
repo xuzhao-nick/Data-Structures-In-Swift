@@ -9,11 +9,10 @@ import XCTest
 @testable import DataStructures
 
 final class SortingTestCase: XCTestCase {
-    var testArray: [Int] = []
-    let sortedArray = [3, 4, 9, 10]
-    
+    var testArray:[Int] = []
+    let sortedArray = [2, 3, 3, 4, 6, 7, 9, 11, 15]
     override func setUp() {
-        testArray = [9, 4, 10, 3]
+        testArray = [7, 2, 6, 3, 3, 9, 15, 4, 11]
     }
     
     func test_bubbleSort() {
@@ -29,5 +28,9 @@ final class SortingTestCase: XCTestCase {
     func test_insertionSort() {
         insertionSort(&testArray)
         XCTAssertEqual(testArray, sortedArray)
+    }
+    
+    func test_mergeSort() {
+        XCTAssertEqual(mergeSort(testArray), sortedArray)
     }
 }
