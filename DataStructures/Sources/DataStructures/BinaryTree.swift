@@ -13,6 +13,58 @@ class BinaryNode<Element> {
     init(value: Element) {
         self.value = value
     }
+    
+}
+
+extension BinaryNode {
+    func serialize() -> [Element?] {
+        var array:[Element?] = []
+        self.traversePreOrderIncludeNil {array.append($0 as Element?)}
+        return array
+    }
+    func deserialize(_ array:[Element?]) {
+        var index = 0
+        self.traverseConstruct(index: &index, array: array)
+    }
+    
+    func traverseConstruct(index:inout Int, array:[Element?]) {
+        guard index < array.count else {
+            return
+        }
+        if let theValue = array[index] {
+            self.value = theValue
+        }
+        index += 1
+        if index < array.count {
+            if let theValue = array[index]  {
+                self.leftChild = BinaryNode(value: theValue)
+                self.leftChild?.traverseConstruct(index: &index, array: array)
+            }
+        }
+        index += 1
+        if index < array.count {
+            if let theValue = array[index]  {
+                self.rightChild = BinaryNode(value:theValue)
+                self.rightChild?.traverseConstruct(index: &index, array: array)
+            }
+        }
+        
+    }
+    
+    
+    func traversePreOrderIncludeNil(visit: (Element?) -> Void) {
+        visit(value)
+        if let left = self.leftChild {
+            left.traversePreOrderIncludeNil(visit:visit)
+        } else {
+            visit(nil)
+        }
+        if let right =  self.rightChild {
+            right.traversePreOrderIncludeNil(visit:visit)
+        } else {
+            visit(nil)
+        }
+    }
 }
 
 extension BinaryNode {
